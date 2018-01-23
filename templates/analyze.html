@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Facebook Comments Sentiment Analyzer</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        .analyze {
+            margin-top: 30px;
+        }
+        .main_image {
+            margin: 50px;
+        }
+        .dislike_image {
+                -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body >
+<div class="container">
+    <div class="text-center main_image">
+        <img class="mb-4" src="https://www.abmuku.com/wp-content/uploads/2012/05/facebook-like-button-thumbs-up-and-down.png" alt="" width="144" height="72">
+    </div>
+
+        <div class="row mb-2 analyze">
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-2 text-primary">Positive</strong>
+              <h3 class="mb-0">
+                <p class="text-dark">{{ positive_count }}개의 긍정댓글</p>
+              </h3>
+              <div class="mb-1 text-muted"></div>
+                {% for word_info_pair in positive_most_frequent_words %}
+                    <p class="card-text mb-auto">{{loop.index}}번째로 가장 많이 나온 단어: {{ word_info_pair[0] }}. {{ word_info_pair[1] }}번.</p>
+                {% endfor %}
+            </div>
+            <img class="card-img-right flex-auto d-none d-md-block" style="width: 200px; height: 200px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Bot%C3%B3n_Me_gusta.svg/200px-Bot%C3%B3n_Me_gusta.svg.png" data-holder-rendered="true">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-2 text-fail" style="color: red;">Negative</strong>
+              <h3 class="mb-0">
+                <p class="text-dark">{{ negative_count }}개의 부정댓글</p>
+              </h3>
+              <div class="mb-1 text-muted"></div>
+                {% for word_info_pair in negative_most_frequent_words %}
+                    <p class="card-text mb-auto">{{loop.index}}번째로 가장 많이 나온 단어: {{ word_info_pair[0] }}. {{ word_info_pair[1] }}번.</p>
+                {% endfor %}
+            </div>
+            <img class="card-img-right flex-auto d-none d-md-block dislike_image" style="width: 200px; height: 200px;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Bot%C3%B3n_Me_gusta.svg/200px-Bot%C3%B3n_Me_gusta.svg.png">
+          </div>
+        </div>
+      </div>
+</div>
+
+
+</body>
+</html>
